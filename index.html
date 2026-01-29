@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Магазин техники</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      margin: 0;
+      padding: 15px;
+      background: #f2f2f2;
+    }
+    h2 {
+      margin-bottom: 15px;
+    }
+    .product {
+      background: #fff;
+      border-radius: 14px;
+      padding: 15px;
+      margin-bottom: 12px;
+    }
+    .product h3 {
+      margin: 0 0 5px;
+    }
+    .price {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: #2aabee;
+      color: #fff;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>📱 iPhone</h2>
+
+<div class="product">
+  <h3>iPhone 15 Pro</h3>
+  <p>256 GB • Titanium</p>
+  <div class="price">89 990 ₽</div>
+  <button onclick="order('iPhone 15 Pro 256GB', 89990)">Заказать</button>
+</div>
+
+<div class="product">
+  <h3>iPhone 14</h3>
+  <p>128 GB • Black</p>
+  <div class="price">59 990 ₽</div>
+  <button onclick="order('iPhone 14 128GB', 59990)">Заказать</button>
+</div>
+
+<script>
+  const tg = window.Telegram.WebApp;
+  tg.expand();
+
+  function order(name, price) {
+    tg.sendData(JSON.stringify({
+      product: name,
+      price: price
+    }));
+    tg.showAlert("Заявка отправлена 👍");
+  }
+</script>
+
+</body>
+</html>
